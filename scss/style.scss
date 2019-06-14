@@ -147,6 +147,7 @@ header{
             .box-active{
                 display: flex;
                 align-items: center;
+                flex-wrap: wrap;
                 background-color: $colorBox;
                 box-shadow: $sombra-box;
                 padding: 25px;
@@ -157,18 +158,21 @@ header{
                     }
                 }
                 .dado{
+                    width: 160px;
                     display: flex;
                     P{
+                        width: 60px;
+                        flex-grow: 1;
                         margin: 0px 0px 5px 0px;
                         &:first-child{
-                            width: 85px;
                             color: #8a8a8a;
                             text-align: right;
-                            margin-right: 5px;
+                            margin-right: 2px;
                         }
                         &:last-child{
                             text-align: left;
                             font-weight: bold;
+                            margin-left: 2px;
                         }
                     }
                     &:last-child{
@@ -266,6 +270,16 @@ header{
                     right: 15px;
                 }
             }
+        }
+    }
+}
+@media screen and (max-width: 310px){
+    .box-active{
+        .photo{
+            margin: 0px auto 25px;
+        }
+        .dados{
+            margin: auto;
         }
     }
 }
