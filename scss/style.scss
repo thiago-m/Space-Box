@@ -4,7 +4,7 @@ $gradientSpaceBox: linear-gradient(#d9d9d9, #fff);
 $verde-escuro: #002b50;
 $verde-claro: #4dd1d3;
 $colorBox: #f1f1ef;
-$sombra-box: 0px 0px 8px 1px #aaa;
+$sombra-box: 0px 1px 5px 0px #aaa;
 
 body{
     font-size: 16px;
@@ -182,9 +182,6 @@ header{
         .col-4{
             width: 30%;
             flex-grow: 1;
-            &:nth-child(3n + 1){
-                padding-right: 15px;
-            }
             .box{
                 display: flex;
                 align-items: center;
@@ -229,7 +226,13 @@ header{
     }
 }
 
-@media screen and (max-width: 678px){
+@media screen and (min-width: 800px){
+    .SpaceBox .container .col-4:nth-child(3n+1) {
+        padding-right: 15px;
+    }
+}
+
+@media screen and (max-width: 800px){
     header{
         position: fixed;
         top: 0px;
@@ -244,5 +247,25 @@ header{
     }
     .SpaceBox{
         margin-top: 60px;
+        .container{
+            .col-4{
+                width: 215px;
+                &:nth-child(2n+1){
+                    padding-right: 15px;
+                }
+            }
+        }
+    }
+}
+@media screen and (max-width: 485px){
+    .SpaceBox{
+        .container{
+            .col-4{
+                padding: {
+                    left: 15px;
+                    right: 15px;
+                }
+            }
+        }
     }
 }
