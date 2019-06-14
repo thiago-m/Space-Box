@@ -1,8 +1,13 @@
 
 $gradient: linear-gradient(to right, #4dd1d3, #002b50);
+$gradientSpaceBox: linear-gradient(#d9d9d9, #fff);
 $verde-escuro: #002b50;
+$verde-claro: #4dd1d3;
+$colorBox: #f1f1ef;
+$sombra-box: 0px 0px 8px 1px #aaa;
 
 body{
+    font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
     padding: 0px;
     margin: 0px;
@@ -13,10 +18,16 @@ body{
     margin: auto; 
 }
 
-.col-12, .col-4{
+.col-12{
     padding: {
         left: 15px;
         right: 15px;
+    }
+}
+.col-4{
+    padding: {
+        left: 15px;
+        right: 10px;
     }
 }
 
@@ -85,6 +96,7 @@ header{
                 display: none;
             } 
         }
+        
         .options{
             display: none;
             position: fixed;
@@ -115,6 +127,108 @@ header{
     }
 }
 
+.photo{
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: space-around;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.SpaceBox{
+    font-size: 14px;
+    background: $gradientSpaceBox;
+    .container{
+        display: flex;
+        flex-wrap: wrap;
+        .col-12{
+            width: 100%;
+            .box-active{
+                display: flex;
+                align-items: center;
+                background-color: $colorBox;
+                box-shadow: $sombra-box;
+                padding: 25px;
+                margin: 25px 0px;
+                .photo{
+                    img{
+                        max-height: 100%;
+                    }
+                }
+                .dado{
+                    display: flex;
+                    P{
+                        margin: 0px 0px 5px 0px;
+                        &:first-child{
+                            width: 85px;
+                            color: #8a8a8a;
+                            text-align: right;
+                            margin-right: 5px;
+                        }
+                        &:last-child{
+                            text-align: left;
+                            font-weight: bold;
+                        }
+                    }
+                    &:last-child{
+                        p{
+                            margin-bottom: 0px;
+                        }
+                    }
+                }
+            }
+        }
+        .col-4{
+            width: 30%;
+            flex-grow: 1;
+            &:nth-child(3n + 1){
+                padding-right: 15px;
+            }
+            .box{
+                display: flex;
+                align-items: center;
+                background-color: $colorBox;
+                box-shadow: $sombra-box;
+                padding: 25px;
+                margin-bottom: 25px;
+                .number-photo{
+                    width: 70px;
+                    height: 70px;
+                    position: relative;
+                    span{
+                        width: 10px;
+                        height: 10px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-around;
+                        position: absolute;
+                        top: 0px;
+                        right: 0px;
+                        color: $verde-escuro;
+                        background-color: $verde-claro;
+                        padding: 5px;
+                        border-radius: 50%;
+                    }
+                }
+                .nome-cargo{
+                    margin-left: 20px;
+                    p{
+                        text-align: left;
+                        margin: 0px;
+                        &:first-child{
+                            font-weight: bold;
+                        }
+                        &:last-child{
+                            color: #8a8a8a;
+                        }
+                    }
+                };
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 678px){
     header{
         position: fixed;
@@ -127,5 +241,8 @@ header{
         .MenuResponsive{
             display: block;
         }
+    }
+    .SpaceBox{
+        margin-top: 60px;
     }
 }
