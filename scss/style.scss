@@ -225,6 +225,12 @@ header{
                         }
                     }
                 };
+                &.active{
+                    background-color: $verde-escuro;
+                    p{
+                        color: #fff !important;
+                    }
+                }
             }
         }
     }
