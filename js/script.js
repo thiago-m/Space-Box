@@ -1,8 +1,11 @@
-
+var dados;
 var httpRequest;
+var peopleContainer = document.getElementById('people');
 
+// Chamando a function para pegar os dados do json
 peopleRequest();
 
+// Function para recuperar as pessoas e dados do json via ajax
 function peopleRequest(){
     //criando o objeto xmlhttprequest
     if(window.XMLHttpRequest){
@@ -26,7 +29,8 @@ function peopleRequest(){
 
     httpRequest.onreadystatechange = function(){
         if (this.readyState == 4 && this.status == 200) {
-            people(JSON.parse(this.responseText));
+            dados = JSON.parse(this.responseText);
+            people(dados);
         }
         
     }
@@ -36,9 +40,8 @@ function peopleRequest(){
     httpRequest.send();
 }
 
+// Funcion para por na pagina html a mesma quantidade e com os mesmos dados as pessoas do json
 function people(people){
-    console.log(people);
-    var peopleContainer = document.getElementById('people');
     var person = '<div class="col-12">'+
                     '<div class="box-active">'+
                         '<div class="photo">'+
@@ -81,7 +84,7 @@ function people(people){
             active = '';
         }
         person += '<div class="col-4">'+
-                        '<div class="box '+ active +'">'+
+                        '<div class="box '+ active +'" onclick="active(this, '+people[i].id+')">'+
                             '<div class="number-photo">'+
                                 '<div class="photo">'+
                                     '<img src="./img/'+people[i].foto+'" alt="">'+
@@ -104,7 +107,36 @@ function people(people){
     peopleContainer.innerHTML = person;
 }
 
-function add_class(){
+// Function para por o box em destaque
+function active(e, id){
+    // retirando active do ultimo elemento ativo
+    document.querySelector('.active').classList.remove('active');
+
+    // colocando o novo elemento como ativo
+    e.className = 'box active';
+
+    // Recuperando dados para por no box em destaque
+    var personDestaque;
+    for(var i=0; i < dados.length; i++){
+        if(dados[i].id == id){
+            personDestaque = dados[i];
+        }
+    }
+    
+    // recuperando elementos do box em destaque e alterando
+    var boxDestaque = document.querySelector('.box-active');
+    // Imagem
+    boxDestaque.children[0].children[0].src = './img/'+personDestaque.foto;
+    // Nome
+    boxDestaque.children[1].children[0].children[1].innerHTML = personDestaque.nome;
+    // Cargo
+    boxDestaque.children[1].children[1].children[1].innerHTML = personDestaque.cargo;
+    // Idade
+    boxDestaque.children[1].children[2].children[1].innerHTML = personDestaque.idade;
+}
+
+// Function para o menu mobile
+function Menu(){
     document.getElementById('MenuToggle').classList.toggle('openMenu');
     document.querySelector('.options').classList.toggle('active');
     
